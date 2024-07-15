@@ -7,19 +7,23 @@ const urls = [
 ];
 let currentIndex = 0;
 
-function loadIframe(index) {
-    currentIndex = index;
+function loadIframe() {
     document.getElementById('contentFrame').src = urls[currentIndex];
 }
 
 function prevPage() {
     if (currentIndex > 0) {
-        loadIframe(currentIndex - 1);
+        currentIndex--;
+        loadIframe();
     }
 }
 
 function nextPage() {
     if (currentIndex < urls.length - 1) {
-        loadIframe(currentIndex + 1);
+        currentIndex++;
+        loadIframe();
     }
 }
+
+// Cargar la primera página al cargar la página web
+loadIframe();
