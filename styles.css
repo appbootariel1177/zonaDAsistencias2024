@@ -28,29 +28,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-.buttons-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    background-color: rgb(217, 175, 70);
-    color: #fff;
-    cursor: pointer;
-    margin: 10px 0;
-    width: 100%;
-    max-width: 300px;
-}
-
-button:hover {
-    background-color: #ffff00;
-}
-
 iframe {
     width: 100%;
     height: 600px;
@@ -66,25 +43,25 @@ iframe {
 }
 
 .nav-buttons button {
-    max-width: 150px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(217, 175, 70);
+    color: #fff;
+    cursor: pointer;
+    width: 150px;
+}
+
+.nav-buttons button:hover {
+    background-color: #ffff00;
 }
 
 @media (max-width: 768px) {
-    button {
-        padding: 8px 16px;
-    }
-
     h1 {
         font-size: 1.5em;
     }
 
-    .nav-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
     .nav-buttons button {
-        width: 100%;
-        margin: 5px 0;
+        padding: 8px 16px;
     }
 }
