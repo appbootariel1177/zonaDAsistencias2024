@@ -1,121 +1,103 @@
 <!DOCTYPE html>
-<html>
-<head><meta http-equiv="cache-control" content="no-cache"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="-1"><style type="text/css">body {
-    background-color: #000;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.container {
-    text-align: center;
-    width: 100%;
-    max-width: 1200px;
-    margin: auto;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 0 15px rgb(213, 213, 229), 0 0 30px rgb(168, 141, 36);
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-h1 {
-    color: rgb(215, 234, 75);
-    margin-bottom: 20px;
-}
-
-iframe {
-    width: 100%;
-    height: 600px;
-    border: none;
-    border-radius: 15px;
-    margin-top: 20px;
-}
-
-.nav-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.nav-buttons button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    background-color: rgb(217, 175, 70);
-    color: #fff;
-    cursor: pointer;
-    width: 150px;
-}
-
-.nav-buttons button:hover {
-    background-color: #ffff00;
-}
-
-@media (max-width: 768px) {
-    h1 {
-        font-size: 1.5em;
-    }
-
-    .nav-buttons button {
-        padding: 8px 16px;
-    }
-}
-</style>
-
-
+<html lang="es">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datos de Asistencias</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Página Principal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgb(213, 213, 229), 0 0 30px rgb(168, 141, 36); /* Luz azul flotante */
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #111;
+        }
+        
+        h1 {
+            color: rgb(215, 234, 75);
+            margin-bottom: 20px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgb(217, 175, 70);
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #ffff00;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 500px; /* Altura deseada del iframe */
+            border: none;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1></h1>
+        <h1>Página Principal</h1>
         
         <div class="nav-buttons">
-            <button onclick="prevPage()">Anterior</button>
-            <button onclick="nextPage()">Siguiente</button>
+            <button onclick="loadPreviousPage()">Anterior</button>
+            <button onclick="loadNextPage()">Siguiente</button>
         </div>
         
-        <iframe id="contentFrame" src="https://appbootariel1177.github.io/Mecanica2024/"></iframe>
+        <iframe id="contentFrame" src="" frameborder="0"></iframe>
     </div>
-    <script src="scripts.js"></script>
+    
+    <script>
+        // Array con las URLs de las webs de asistencias
+        var urls = [
+            "https://appbootariel1177.github.io/cajasasistencias/",
+            "https://appbootariel1177.github.io/electronica2024/",
+            "https://appbootariel1177.github.io/Mecanica2024/",
+            "https://appbootariel1177.github.io/hidraulica2024/",
+            "https://appbootariel1177.github.io/neumatica2024/"
+        ];
 
+        var currentIndex = 0; // Índice actual del array
 
-<script>const urls = [
-    'https://appbootariel1177.github.io/cajasasistencias/',
-    'https://appbootariel1177.github.io/electronica2024/',
-    'https://appbootariel1177.github.io/Mecanica2024/',
-    'https://appbootariel1177.github.io/hidraulica2024/',
-    'https://appbootariel1177.github.io/neumatica2024/'
-];
-let currentIndex = 0;
-
-function loadIframe() {
-    document.getElementById('contentFrame').src = urls[currentIndex];
-}
-
-function prevPage() {
-    if (currentIndex > 0) {
-        currentIndex--;
-        loadIframe();
-    }
-}
-
-function nextPage() {
-    if (currentIndex < urls.length - 1) {
-        currentIndex++;
-        loadIframe();
-    }
-}
-
-// Cargar la primera página al cargar la página web
-loadIframe();
-</script></body>
+        // Función para cargar la página anterior en el iframe
+        function loadPreviousPage() {
+            currentIndex = (currentIndex - 1 + urls.length) % urls.length;
+            document.getElementById("contentFrame").src = urls[currentIndex];
+        }
+        
+        // Función para cargar la página siguiente en el iframe
+        function loadNextPage() {
+            currentIndex = (currentIndex + 1) % urls.length;
+            document.getElementById("contentFrame").src = urls[currentIndex];
+        }
+    </script>
+</body>
+</html>
